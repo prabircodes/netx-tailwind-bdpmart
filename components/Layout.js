@@ -25,8 +25,15 @@ export default function Layout({ title, children }) {
               <a className='text-lg font-bold'>bdpmart</a>
             </Link>
             <div>
+              <Link href='/register'>
+                <a className='p-2'>Register</a>
+              </Link>
+              <Link href='/login'>
+                <a className='p-2'> Login</a>
+              </Link>
               <Link href='/cart'>
                 <a className='p-2'>
+                  {/* <ShoppingCartIcon className="h-4 w-4 "/> */}
                   Cart
                   {cartItemsCount > 0 && (
                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
@@ -34,9 +41,6 @@ export default function Layout({ title, children }) {
                     </span>
                   )}
                 </a>
-              </Link>
-              <Link href='/login'>
-                <a className='p-2'> Login</a>
               </Link>
             </div>
           </nav>
