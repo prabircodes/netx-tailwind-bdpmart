@@ -25,7 +25,7 @@ const data = {
       description: 'Firm fresh potatos',
     },
     {
-      name: 'Brinjal-Small',
+      name: 'Brinjal Small',
       slug: 'brinjal-small',
       category: 'Fruits',
       image: '/images/brinjal-small.webp',
