@@ -1,13 +1,13 @@
 import { signOut, useSession } from 'next-auth/react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Cookies from 'js-cookie'
 import React, { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Menu } from '@headlessui/react'
 import 'react-toastify/dist/ReactToastify.css'
 import { Store } from '../utils/Store'
 import DropdownLink from './DropdownLink'
-import Cookies from 'js-cookie'
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession()
@@ -18,6 +18,7 @@ export default function Layout({ title, children }) {
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
   }, [cart.cartItems])
+
   const logoutClickHandler = () => {
     Cookies.remove('cart')
     dispatch({ type: 'CART_RESET' })
@@ -26,12 +27,14 @@ export default function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title ? title + '-Bdpmart' : 'Bdpmart'}</title>
-        <meta name='description' content='Bangladeshi Shope in Prague' />
+        <title>{title ? title + ' - Bdpmart' : 'Bdpmart'}</title>
+        <meta name='description' content='Bangladeshi ecommererce store prague' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
       <ToastContainer position='bottom-center' limit={1} />
-      <div className='flex min-h-screen flex-col justify-between'>
+
+      <div className='flex min-h-screen flex-col justify-between '>
         <header>
           <nav className='flex h-12 items-center px-4 justify-between shadow-md'>
             <Link href='/'>
@@ -40,7 +43,6 @@ export default function Layout({ title, children }) {
             <div>
               <Link href='/cart'>
                 <a className='p-2'>
-                  {/* <ShoppingCartIcon className="h-4 w-4 "/> */}
                   Cart
                   {cartItemsCount > 0 && (
                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
@@ -49,6 +51,7 @@ export default function Layout({ title, children }) {
                   )}
                 </a>
               </Link>
+
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
@@ -56,7 +59,7 @@ export default function Layout({ title, children }) {
                   <Menu.Button className='text-blue-600'>
                     {session.user.name}
                   </Menu.Button>
-                  <Menu.Items className='absolute right-0 w-56 origin-top-right bg-white shadow-lg'>
+                  <Menu.Items className='absolute right-0 w-56 origin-top-right bg-white  shadow-lg '>
                     <Menu.Item>
                       <DropdownLink className='dropdown-link' href='/profile'>
                         Profile
@@ -70,10 +73,20 @@ export default function Layout({ title, children }) {
                         Order History
                       </DropdownLink>
                     </Menu.Item>
+                    {session.user.isAdmin && (
+                      <Menu.Item>
+                        <DropdownLink
+                          className='dropdown-link'
+                          href='/admin/dashboard'
+                        >
+                          Admin Dashboard
+                        </DropdownLink>
+                      </Menu.Item>
+                    )}
                     <Menu.Item>
                       <a
-                        href='#'
                         className='dropdown-link'
+                        href='#'
                         onClick={logoutClickHandler}
                       >
                         Logout
@@ -91,7 +104,7 @@ export default function Layout({ title, children }) {
         </header>
         <main className='container m-auto mt-4 px-4'>{children}</main>
         <footer className='flex h-10 justify-center items-center shadow-inner'>
-          Copyright © 2022 Bdpmart
+          <p>Copyright © 2022 Bdpmart</p>
         </footer>
       </div>
     </>
