@@ -89,16 +89,16 @@ Getting Started
     ii. create register page
     iii. call api on form submit
 23. Pay Order By PayPal
-    add paypal button
-    handle payment
-    create backend api
-    update order state
-    Create Order History Screen
-    create my order api
-    create order history component
-    fetch orders and display them
-    Publish On Vercel
-    create vercel account
+    i. add paypal button
+    ii. handle payment
+    iii. create backend api
+    iv. update order state
+24. Create Order History Screen
+    i. create my order api
+    ii. create order history component
+    iii. fetch orders and display them
+    iv. Publish On Vercel
+25. create vercel account
     connect to github
     set next auth and mongodb db in env vars
     push code to github
