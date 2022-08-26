@@ -1,4 +1,4 @@
-// /api/ordfer/:id
+// /api/orders/:id
 
 import {getSession} from 'next-auth/react'
 import Order from '../../../models/Order';
