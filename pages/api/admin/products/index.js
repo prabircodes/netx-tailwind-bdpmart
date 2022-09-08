@@ -30,11 +30,11 @@ const postHandler = async (req, res) => {
     rating: 0,
     numReviews: 0,
   })
+
   const product = await newProduct.save()
   await db.disconnect()
   res.send({ message: 'Product created successfully', product })
 }
-
 const getHandler = async (req, res) => {
   await db.connect()
   const products = await Product.find({})
