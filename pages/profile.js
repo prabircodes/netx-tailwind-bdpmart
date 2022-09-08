@@ -132,3 +132,5 @@ export default function ProfileScreen() {
     </Layout>
   )
 }
+
+ProfileScreen.auth = true
